@@ -12,7 +12,7 @@ public class CheckoutService {
 	
 	private static final int DIM_DIVISOR = 139;
 
-	public CheckoutInfo prepareCheckout(List<CartItem> cartItems) {
+	public CheckoutInfo prepareCheckout(List<CartItem> cartItems) {//tính toán tất cả chi phí
 		CheckoutInfo checkoutInfo = new CheckoutInfo();
 		
 		float productCost = calculateProductCost(cartItems);

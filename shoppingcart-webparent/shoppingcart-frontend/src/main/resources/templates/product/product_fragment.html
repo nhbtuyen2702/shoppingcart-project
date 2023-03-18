@@ -15,12 +15,12 @@
 
 <div th:fragment="product_price" th:remove="tag">
 	<th:block th:if="${product.discountPercent &lt;= 0}">
-		<span>$ [[${product.price}]]</span>	
+		<span>$ [[${#numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT')}]]</span>	
 	</th:block>
 	
 	<th:block th:if="${product.discountPercent > 0}">
-		<span style="font-size: larger; color: darkred">$ [[${product.discountPrice}]]</span>
-		<span><del>$ [[${product.price}]]</del></span>
+		<span style="font-size: larger; color: darkred">$ [[${#numbers.formatDecimal(product.discountPrice, 1, 'COMMA', 2, 'POINT')}]]</span>
+		<span><del>$ [[${#numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT')}]]</del></span>	
 	</th:block>
 </div>
 

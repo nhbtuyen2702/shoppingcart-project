@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shoppingcart.client.Utility;
 import com.shoppingcart.common.entity.Customer;
-import com.shoppingcart.client.customer.CustomerNotFoundException;
+import com.shoppingcart.common.exception.CustomerNotFoundException;
 import com.shoppingcart.client.customer.CustomerService;
 
 @RestController
@@ -19,7 +19,7 @@ public class ShoppingCartRestController {
 	@Autowired private ShoppingCartService cartService;
 	@Autowired private CustomerService customerService;
 	
-	@PostMapping("/cart/add/{productId}/{quantity}")//thêm 1 product mới vào cart
+	@PostMapping("/cart/add/{productId}/{quantity}")//thêm 1 product cart
 	public String addProductToCart(@PathVariable("productId") Integer productId,
 			@PathVariable("quantity") Integer quantity, HttpServletRequest request) {
 		
@@ -52,7 +52,7 @@ public class ShoppingCartRestController {
 			Customer customer = getAuthenticatedCustomer(request);
 			float subtotal = cartService.updateQuantity(productId, quantity, customer);
 			
-			return String.valueOf(subtotal);//trả về subtotal mới sau khi update quantity
+			return String.valueOf(subtotal);//trả về subtotal mới sau khi đã update quantity
 		} catch (CustomerNotFoundException ex) {
 			return "You must login to change quantity of product.";
 		}	
@@ -63,7 +63,7 @@ public class ShoppingCartRestController {
 			HttpServletRequest request) {
 		try {
 			Customer customer = getAuthenticatedCustomer(request);
-			cartService.removeProduct(productId, customer);
+			cartService.removeProduct(productId, customer);//xóa cartItem trong db
 			
 			return "The product has been removed from your shopping cart.";
 			

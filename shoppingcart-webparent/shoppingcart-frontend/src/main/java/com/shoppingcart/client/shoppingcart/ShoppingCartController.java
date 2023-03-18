@@ -22,12 +22,12 @@ public class ShoppingCartController {
 	@GetMapping("/cart")
 	public String viewCart(Model model, HttpServletRequest request) {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//kiểm tra customer đã đăng nhập chưa
-		List<CartItem> cartItems = cartService.listCartItems(customer);
+		List<CartItem> cartItems = cartService.listCartItems(customer);//lấy tất cả cartItems thuộc về customer này
 		
-		float estimatedTotal = 0.0F;
-		//1 cartItem chứa 1 product và 1 customer
+		float estimatedTotal = 0.0F;//tính tổng số tiền của tất cả các cartItems
+
 		for (CartItem item : cartItems) {
-			estimatedTotal += item.getSubtotal();//tính tổng số tiền của tất cả các cartItem
+			estimatedTotal += item.getSubtotal();//số tiền của mỗi cartItem = discountPrice * quantity
 		}
 		
 		model.addAttribute("cartItems", cartItems);

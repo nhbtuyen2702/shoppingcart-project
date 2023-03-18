@@ -43,7 +43,7 @@ public class OrderService {
 		
 		Set<OrderDetail> orderDetails = newOrder.getOrderDetails();
 		
-		for (CartItem cartItem : cartItems) {
+		for (CartItem cartItem : cartItems) {//tạo orderDetail để lưu các thông tin của từng cartItem
 			Product product = cartItem.getProduct();
 			
 			OrderDetail orderDetail = new OrderDetail();
@@ -58,7 +58,7 @@ public class OrderService {
 			orderDetails.add(orderDetail);
 		}
 		
-		return repo.save(newOrder);
+		return repo.save(newOrder);//lưu order xuống db
 	}
 	
 	public Page<Order> listForCustomerByPage(Customer customer, int pageNum, 

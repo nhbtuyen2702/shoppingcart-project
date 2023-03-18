@@ -47,7 +47,7 @@
 			
 			<div th:if="${product.discountPercent > 0}">
 				Price: <span style="font-size: larger; color: darkred">$ [[${product.discountPrice}]]</span>
-				([[${product.discountPercent}]] % off)
+				([[${#numbers.formatDecimal(product.discountPercent, 1, 'COMMA', 2, 'POINT')}]] % off)
 			</div>
 			
 			<div>&nbsp;</div>

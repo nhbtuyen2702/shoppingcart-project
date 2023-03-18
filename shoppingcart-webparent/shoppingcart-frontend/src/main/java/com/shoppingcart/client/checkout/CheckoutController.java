@@ -42,7 +42,7 @@ public class CheckoutController {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//kiểm tra customer đã đăng nhập chưa
 		
 		List<CartItem> cartItems = cartService.listCartItems(customer);
-		CheckoutInfo checkoutInfo = checkoutService.prepareCheckout(cartItems);
+		CheckoutInfo checkoutInfo = checkoutService.prepareCheckout(cartItems);//tính toán tất cả chi phí
 		
 		model.addAttribute("customer", customer);
 		model.addAttribute("checkoutInfo", checkoutInfo);
@@ -52,7 +52,7 @@ public class CheckoutController {
 		return "checkout/checkout";
 	}
 	
-	@PostMapping("/place_order")
+	@PostMapping("/place_order")//khi bấm vào Place Order with COD sẽ chạy vào phương thức này để tạo order
 	public String placeOrder(HttpServletRequest request) 
 			throws UnsupportedEncodingException, MessagingException {
 		String paymentType = request.getParameter("paymentMethod");
@@ -63,11 +63,11 @@ public class CheckoutController {
 		List<CartItem> cartItems = cartService.listCartItems(customer);
 		CheckoutInfo checkoutInfo = checkoutService.prepareCheckout(cartItems);
 		
-		Order createdOrder = orderService.createOrder(customer, cartItems, paymentMethod, checkoutInfo);
-		cartService.deleteByCustomer(customer);
-		sendOrderConfirmationEmail(request, createdOrder);
+		Order createdOrder = orderService.createOrder(customer, cartItems, paymentMethod, checkoutInfo);//tạo order
+		cartService.deleteByCustomer(customer);//sau khi tạo order thì xóa cartItem trong db
+		sendOrderConfirmationEmail(request, createdOrder);//gửi mail các thông tin của order 
 		
-		return "checkout/order_completed";
+		return "checkout/order_completed";//trả về trang hiển thị đã order thành công
 	}
 
 	private void sendOrderConfirmationEmail(HttpServletRequest request, Order order) 

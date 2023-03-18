@@ -119,4 +119,13 @@ public class ProductService {
 			throw new ProductNotFoundException("Could not find any product with ID " + id);
 		}
 	}
+	
+	public Page<Product> searchProducts(int pageNum, String sortField, String sortDir, String keyword) {
+		Sort sort = Sort.by(sortField);
+		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
+		return repo.searchProductsByName(keyword, pageable);		
+	}
+	
 }

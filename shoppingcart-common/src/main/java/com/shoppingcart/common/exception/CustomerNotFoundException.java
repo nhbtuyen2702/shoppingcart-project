@@ -1,4 +1,4 @@
-package com.shoppingcart.client.customer;
+package com.shoppingcart.common.exception;
 
 public class CustomerNotFoundException extends Exception {
 

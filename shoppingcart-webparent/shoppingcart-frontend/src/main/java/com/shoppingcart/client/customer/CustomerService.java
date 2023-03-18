@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.shoppingcart.common.entity.AuthenticationType;
 import com.shoppingcart.common.entity.Country;
 import com.shoppingcart.common.entity.Customer;
-import com.shoppingcart.client.customer.CustomerNotFoundException;
+import com.shoppingcart.common.exception.CustomerNotFoundException;
 import com.shoppingcart.client.setting.CountryRepository;
 
 import net.bytebuddy.utility.RandomString;

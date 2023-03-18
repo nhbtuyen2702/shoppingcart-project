@@ -173,5 +173,29 @@ public class Order extends AbstractAddress {
 		
 		return address;
 	}
+	
+	@Transient
+	public String getProductNames() {
+		String productNames = "";
+		
+		productNames = "<ul>";
+		
+		for (OrderDetail detail : orderDetails) {
+			productNames += "<li>" + detail.getProduct().getShortName() + "</li>";			
+		}
+		
+		productNames += "</ul>";
+		
+		return productNames;
+	}	
+	
+	@Transient
+	public String getDestination() {
+		String destination =  city + ", ";
+		if (state != null && !state.isEmpty()) destination += state + ", ";
+		destination += country;
+		
+		return destination;
+	}
 
 }

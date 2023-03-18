@@ -122,8 +122,16 @@
 		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>					
 </th>
 
+<div th:fragment="format_currency(amount)" th:remove="tag">
+	<span th:remove="tag">$ </span>[[${#numbers.formatDecimal(amount, 1, 'COMMA', 2, 'POINT')}]]
+</div>
+		
 <div th:fragment="format_time(dateTime)" th:remove="tag">
 	<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+</div>	
+
+<div th:fragment="currency_input(amount)" th:remove="tag">
+	<input type="text" readonly class="form-control" th:value="${'$ ' + #numbers.formatDecimal(amount, 1, 'COMMA', 2, 'POINT')}">
 </div>	
 
 </body>

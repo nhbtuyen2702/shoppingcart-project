@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shoppingcart.client.Utility;
 import com.shoppingcart.common.entity.Customer;
-import com.shoppingcart.client.customer.CustomerNotFoundException;
+import com.shoppingcart.common.exception.CustomerNotFoundException;
 import com.shoppingcart.client.setting.EmailSettingBag;
 import com.shoppingcart.client.setting.SettingService;
 

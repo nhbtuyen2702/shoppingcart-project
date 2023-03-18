@@ -102,16 +102,7 @@ public class ProductController {
 			@RequestParam(name = "detailValues", required = false) String[] detailValues,//...
 			@RequestParam(name = "imageIDs", required = false) String[] imageIDs,//...
 			@RequestParam(name = "imageNames", required = false) String[] imageNames,//...
-			@AuthenticationPrincipal ShoppingUserDetails loggedUser
-			) throws IOException {
-		
-		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
-			if (loggedUser.hasRole("Salesperson")) {
-				productService.saveProductPrice(product);
-				ra.addFlashAttribute("message", "The product has been saved successfully.");			
-				return defaultRedirectURL;
-			}
-		}
+			@AuthenticationPrincipal ShoppingUserDetails loggedUser) throws IOException {
 		
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);//save mainImage
 		ProductSaveHelper.setExistingExtraImageNames(imageIDs, imageNames, product);//save extraImages đang tồn tại

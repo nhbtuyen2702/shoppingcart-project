@@ -68,7 +68,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//kế th�
 					.rememberMe()//khi tắt server thì user ko cần đăng nhập lại
 						.key("AbcDefgHijKlmnOpqrs_1234567890")//key là chuỗi bất kỳ, khi user đăng nhập thành công và có checked rememberMe, nó sẽ lấy chuỗi này mã hóa và lưu vào trong cookies, đó là lý do user ko cần đăng nhập lại, khi key hết hạn hoặc server thay đổi chuỗi key thì user phải đăng nhập lại
 						.tokenValiditySeconds(7 * 24 * 60 * 60);//ko cần đăng nhập trong 7 ngày
-	}
+		
+		http.headers().frameOptions().sameOrigin();
+	}		
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

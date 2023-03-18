@@ -17,7 +17,7 @@
 				<div class="card-header"><h5>Shipping information</h5></div>
 				
 				<div class="card-body">
-					<p><b>Ship to:</b>&nbsp; [[${shippingAddress}]]</p>
+					<p><b>Ship to:</b>&nbsp; [[${shippingAddress}]]</p><!-- thông tin của customer để ship product -->
 				</div>
 			</div>		
 			
@@ -25,7 +25,7 @@
 				<div class="card-header"><h5>Payment Method</h5></div>
 				
 				<div class="card-body">
-					<form th:action="@{/place_order}" method="post">
+					<form th:action="@{/place_order}" method="post"><!-- tạo order -->
 						<p>
 							<input type="radio" name="paymentMethod" id="radioCOD" value="COD" /> Cash on Delivery (COD)
 							&nbsp;
@@ -42,7 +42,7 @@
 				
 				<div class="card-body">
 					<div>
-						<table>
+						<table><!-- thông tin của từng cartItem -->
 							<th:block th:each="item : ${cartItems}">
 								<tr th:with="product = ${item.product}">
 									<td>[[${item.quantity}]] X &nbsp;&nbsp;</td>
@@ -52,11 +52,11 @@
 											[[${product.shortName}]]
 										</a>
 										<br/>
-										<small>Ship: <span>$ [[${item.shippingCost}]]</span></small>
+										<small>Ship: <div th:replace="fragments :: format_currency(${item.shippingCost})"></div></small>
 									</td>
 									
 									<td>
-										<span>$ [[${item.subtotal}]]</span>
+										<div th:replace="fragments :: format_currency(${item.subtotal})">
 									</td>
 								</tr>
 							</th:block>
@@ -66,17 +66,17 @@
 					
 					<div class="row mt-2">
 						<div class="col">Product Total: </div>
-						<div class="col"><span>$ [[${checkoutInfo.productTotal}]]</span></div>
+						<div class="col"><div th:replace="fragments :: format_currency(${checkoutInfo.productTotal})"></div></div>
 					</div>
 					
 					<div class="row mt-2">
 						<div class="col">Shipping Total: </div>
-						<div class="col"><span>$ [[${checkoutInfo.shippingCostTotal}]]</span></div>
+						<div class="col"><div th:replace="fragments :: format_currency(${checkoutInfo.shippingCostTotal})"></div></div>
 					</div>
 							
 					<div class="row mt-2">
 						<div class="col">Payment Total: </div>
-						<div class="col"><b><span>$ [[${checkoutInfo.paymentTotal}]]</span></b></div>
+						<div class="col"><b><div th:replace="fragments :: format_currency(${checkoutInfo.paymentTotal})"></div></b></div>
 					</div>										
 				</div>
 			</div>		
@@ -96,7 +96,7 @@
 	var csrfValue = "[[${_csrf.token}]]";
 	
 	$(document).ready(function() {
-		$("#radioCOD").on("click", function() {
+		$("#radioCOD").on("click", function() {//khi bấm vào radioCOD thì sẽ hiển thị button "Place Order with COD"
 			$("#buttonSubmit").removeClass("d-none");
 		});
 	});

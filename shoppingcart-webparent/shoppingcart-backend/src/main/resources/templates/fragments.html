@@ -99,7 +99,7 @@
 					</li>
 
 					<li th:class="${currentPage != i ? 'page-item': 'page-item active'}"
-						th:each="i : ${#numbers.sequence(1, totalPages)}">
+						th:each="i : ${#numbers.sequence(1, totalPages)}"><!-- tạo vòng lặp bắt đầu từ 1 đến totalPages)} -->
 						<a th:replace="fragments :: page_link(${moduleURL}, ${i}, ${i})"></a>
 					</li>
 
@@ -121,7 +121,19 @@
 	<div th:fragment="footer" class="text-center m-3">
 		<p>Shopping Cart Control Panel - Copyright &copy; ShoppingCart</p>
 	</div>
-
+	
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span>$ </span>[[${#numbers.formatDecimal(amount, 1, 'COMMA', 2, 'POINT')}]]
+	</div>
+	
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input type="text" readonly class="form-control" th:value="${'$ ' + #numbers.formatDecimal(amount, 1,  'COMMA', 2, 'POINT')}">
+	</div>
+	
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+	</div>
+	
 </body>
 
 </html>

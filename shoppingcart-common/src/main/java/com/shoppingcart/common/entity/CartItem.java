@@ -20,7 +20,7 @@ public class CartItem extends IdBasedEntity {
 	@JoinColumn(name = "product_id")	
 	private Product product;
 	
-	private int quantity;
+	private int quantity;//số lượng product trong 1 cartItem
 	
 	@Transient
 	private float shippingCost;
