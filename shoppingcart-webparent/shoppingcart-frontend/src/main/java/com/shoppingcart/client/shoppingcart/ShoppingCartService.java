@@ -27,7 +27,7 @@ public class ShoppingCartService {
 		CartItem cartItem = cartRepo.findByCustomerAndProduct(customer, product);//kiểm tra cartItem tương ứng với customer và product đã tồn tại trong db chưa, nếu đã tồn tại thì lấy ra cartItem này 
 		
 		if (cartItem != null) {//nếu đã tồn tại cartItem trong db thì lấy ra cartItem đó
-			updatedQuantity = cartItem.getQuantity() + quantity;//lấy giá trị quantity của cartItem vừa lấy từ db + 1
+			updatedQuantity = cartItem.getQuantity() + quantity;//lấy giá trị quantity của cartItem vừa lấy từ db + quantity
 			
 			if (updatedQuantity > 5) {//nếu quantity > 5 thì báo lỗi maxmimum là 5
 				throw new ShoppingCartException("Could not add more " + quantity + " item(s)"

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "settings")
 public class Setting {
 	@Id
-	@Column(name = "`key`", nullable = false, length = 128)
+	@Column(name = "`key`", nullable = false, length = 128)//vì key là một từ khóa trong mysql, nên muốn đặt tên cột là key phải có `key`, nếu ko sẽ báo lỗi vì tên cột trùng với từ khóa trong mysql
 	private String key;
 	
 	@Column(nullable = false, length = 1024)
