@@ -12,6 +12,18 @@ import com.shoppingcart.common.entity.setting.SettingCategory;
 public class SettingService {//class này chứa tất cả các settings
 	
 	@Autowired private SettingRepository settingRepo;
+	
+	/*
+	INSERT INTO `settings` VALUES 
+	('MAIL_FROM','nhbtuyen2702@gmail.com','MAIL_SERVER'),
+	('MAIL_HOST','smtp.gmail.com','MAIL_SERVER'),
+	('MAIL_PASSWORD','gpctiolgpwrabzxm','MAIL_SERVER'),
+	('MAIL_PORT','587','MAIL_SERVER'),
+	('MAIL_SENDER_NAME','Shopping Team','MAIL_SERVER'),
+	('MAIL_USERNAME','nhbtuyen2702@gmail.com','MAIL_SERVER'),
+	('SMTP_AUTH','true','MAIL_SERVER'),
+	('SMTP_SECURED','true','MAIL_SERVER')
+	*/
 
 	/* Insert data sau vào table settings
 	key					value					category

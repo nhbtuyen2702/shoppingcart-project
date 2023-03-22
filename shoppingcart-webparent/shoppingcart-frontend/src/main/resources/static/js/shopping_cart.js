@@ -71,15 +71,14 @@ function updateTotal() {//khi tăng/giảm số lượng product hoặc xóa car
 	
 	$(".subtotal").each(function(index, element) {//lấy ra tất cả thẻ có class là subtotal -->cộng tất cả giá trị của các thẻ này sẽ ra được total
 		productCount++;
-		total += parseFloat(clearCurrencyFormat(element.innerHTML));
+		total += parseFloat(clearCurrencyFormat(element.innerHTML));//xóa dấu , để có thể chuyển từ String thành Float
 	});
 	
 	if (productCount < 1) {//nếu productCount < 1 -->tất cả products đã bị xóa khỏi cart -->ẩn div sectionTotal và hiển thị div sectionEmptyCartMessage
 		showEmptyShoppingCart();
 	} else {
-		$("#total").text(formatCurrency(total));//cập nhật lại total
+		$("#total").text(formatCurrency(total));//cập nhật lại total, thêm dấu , vào hàng nghìn của phần nguyên
 	}
-	
 }
 
 function showEmptyShoppingCart() {
@@ -125,6 +124,6 @@ function formatCurrency(amount) {
 }
 
 function clearCurrencyFormat(numberString) {
-	result = numberString.replaceAll(thousandsSeparator, "");
+	result = numberString.replaceAll(thousandsSeparator, "");//thay tất cả dấu , thành "" để có thể chuyển từ String thành Float
 	return result.replaceAll(decimalSeparator, ".");
 }

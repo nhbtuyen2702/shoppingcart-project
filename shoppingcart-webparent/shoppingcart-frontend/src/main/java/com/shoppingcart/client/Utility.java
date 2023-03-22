@@ -36,9 +36,9 @@ public class Utility {
 		return mailSender;
 	}
 	
-	//phương thức này sẽ kiểm tra customer đã đăng nhập hay chưa
+	//phương thức này sẽ lấy ra customer đang đăng nhập, sau đó trả về email của customer đó
 	public static String getEmailOfAuthenticatedCustomer(HttpServletRequest request) {
-		Object principal = request.getUserPrincipal();//lấy ra customer trong request gửi đến
+		Object principal = request.getUserPrincipal();
 		if (principal == null) return null;
 		
 		String customerEmail = null;

@@ -37,7 +37,7 @@ public class ShoppingCartRestController {
 	
 	private Customer getAuthenticatedCustomer(HttpServletRequest request) 
 			throws CustomerNotFoundException {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);//kiểm tra customer đã đăng nhập hay chưa
+		String email = Utility.getEmailOfAuthenticatedCustomer(request);//phương thức này sẽ lấy ra customer đang đăng nhập, sau đó trả về email của customer đó
 		if (email == null) {
 			throw new CustomerNotFoundException("No authenticated customer");//nếu customer = null -->chưa đăng nhập
 		}

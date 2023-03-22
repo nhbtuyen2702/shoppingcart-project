@@ -119,9 +119,9 @@
 	moduleURL = "[[@{/orders}]]";
 
 	$(document).ready(function() {
-		handleLinkViewCustomerDetails();
-		handleLinkViewOrderDetails();
-		handleLinkDeleteOrder();		
+		handleLinkViewCustomerDetails();//khi bấm vào xem detail của customer sẽ vào phương thức này
+		handleLinkViewOrderDetails();//khi bấm vào xem detail của order này sẽ vào phương thức này
+		handleLinkDeleteOrder();//khi bấm vào delete order thì sẽ vào phương thức này
 	});
 	
 	function handleLinkViewCustomerDetails() {

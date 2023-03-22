@@ -21,7 +21,7 @@ public class ShoppingCartController {
 	
 	@GetMapping("/cart")
 	public String viewCart(Model model, HttpServletRequest request) {
-		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//kiểm tra customer đã đăng nhập chưa
+		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//dùng email để lấy ra customer tương ứng
 		List<CartItem> cartItems = cartService.listCartItems(customer);//lấy tất cả cartItems thuộc về customer này
 		
 		float estimatedTotal = 0.0F;//tính tổng số tiền của tất cả các cartItems

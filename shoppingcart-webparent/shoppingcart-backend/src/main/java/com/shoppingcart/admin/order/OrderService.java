@@ -26,7 +26,7 @@ public class OrderService {
 	public Page<Order> listByPage(int pageNum, String sortField, String sortDir, String keyword) {
 		Sort sort = null;
 		if ("destination".equals(sortField)) {
-			sort = Sort.by("country").and(Sort.by("state")).and(Sort.by("city"));
+			sort = Sort.by("country").and(Sort.by("state")).and(Sort.by("city"));//sắp xếp các orders theo thứ tự country > state > city
 		} else {
 			sort = Sort.by(sortField);
 		}

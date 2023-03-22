@@ -39,7 +39,7 @@ public class CheckoutController {
 	
 	@GetMapping("/checkout")
 	public String showCheckoutPage(Model model, HttpServletRequest request) {
-		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//kiểm tra customer đã đăng nhập chưa
+		Customer customer = controllerHelper.getAuthenticatedCustomer(request);//dùng email để lấy ra customer tương ứng
 		
 		List<CartItem> cartItems = cartService.listCartItems(customer);
 		CheckoutInfo checkoutInfo = checkoutService.prepareCheckout(cartItems);//tính toán tất cả chi phí

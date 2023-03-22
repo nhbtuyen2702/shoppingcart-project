@@ -16,7 +16,7 @@
 		<div class="collapse navbar-collapse" id="topNavbar">
 			<ul class="navbar-nav">		
 			
-				<th:block sec:authorize="!isAuthenticated()"><!-- customer đã login mới thấy được các items này -->
+				<th:block sec:authorize="!isAuthenticated()"><!-- customer chưa login mới thấy được các items này -->
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/login}">Login</a>
 					</li>

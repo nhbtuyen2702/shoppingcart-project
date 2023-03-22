@@ -132,7 +132,7 @@ public class CustomerController {
 
 	@GetMapping("/account_details")
 	public String viewAccountDetails(Model model, HttpServletRequest request) {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);//chỉ những customer đã đăng nhập mới được gọi đến request này
+		String email = Utility.getEmailOfAuthenticatedCustomer(request);//phương thức này sẽ lấy ra customer đang đăng nhập
 		Customer customer = customerService.getCustomerByEmail(email);
 		List<Country> listCountries = customerService.listAllCountries();
 		

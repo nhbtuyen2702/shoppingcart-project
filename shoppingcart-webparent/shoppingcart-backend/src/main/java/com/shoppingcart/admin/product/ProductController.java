@@ -160,15 +160,6 @@ public class ProductController {
 			List<Brand> listBrands = brandService.listAll();
 			Integer numberOfExistingExtraImages = product.getImages().size();//số lượng extraImages đang có
 			
-			boolean isReadOnlyForSalesperson = false;
-			
-			if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
-				if (loggedUser.hasRole("Salesperson")) {
-					isReadOnlyForSalesperson = true;
-				}
-			}
-			
-			model.addAttribute("isReadOnlyForSalesperson", isReadOnlyForSalesperson);
 			model.addAttribute("product", product);
 			model.addAttribute("listBrands", listBrands);
 			model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");
