@@ -48,7 +48,8 @@
 			productId = $(this).attr("pid");
 			productName = $("#pname" + productId).text();
 			
-			if (window.parent.isProductAlreadyAdded(productId)) {
+			//khi sử dụng iframe nó tạo ra 1 cửa sổ mới, nhấn f12 > source để xem
+			if (window.parent.isProductAlreadyAdded(productId)) {//window.parent để gọi đến phương thức của cửa số cha
 				showWarningModal("The product '" + productName + "' was already added.");
 			} else {				
 				window.parent.addProduct(productId, productName);

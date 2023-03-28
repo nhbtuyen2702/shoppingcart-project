@@ -8,6 +8,7 @@ $(document).ready(function() {
 		link = $(this);
 		url = link.attr("href");
 		
+		//on("shown.bs.modal" -->on dùng để bắt sự kiện khi xày ra thay đổi -->khi modal hiển thị xong nó sẽ vào phương thức này
 		$("#addProductModal").on("shown.bs.modal", function() {
 			$(this).find("iframe").attr("src", url);
 		});
@@ -21,16 +22,8 @@ function addProduct(productId, productName) {
 }
 
 function getShippingCost(productId) {
-	selectedCountry = $("#country option:selected");
-	countryId = selectedCountry.val();
-	
-	state = $("#state").val();
-	if (state.length == 0) {
-		state = $("#city").val();		
-	}
-	
 	requestUrl = contextPath + "get_shipping_cost";
-	params = {productId: productId, countryId: countryId, state: state};
+	params = {productId: productId};
 	
 	$.ajax({
 		type: 'POST',
@@ -45,7 +38,7 @@ function getShippingCost(productId) {
 		showWarningModal(err.responseJSON.message);
 		shippingCost = 0.0;
 		getProductInfo(productId, shippingCost);
-	}).always(function() {
+	}).always(function() {//phương thức khai báo always sẽ luôn được thực thi cho dù có xảy ra lỗi hay ko
 		$("#addProductModal").modal("hide");
 	});		
 }

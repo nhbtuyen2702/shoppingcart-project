@@ -20,7 +20,8 @@ public class ShippingRateService {
 		
 		float dimWeight = (product.getLength() * product.getWidth() * product.getHeight()) / DIM_DIVISOR;
 		float finalWeight = product.getWeight() > dimWeight ? product.getWeight() : dimWeight;
-				
-		return finalWeight;
+		float shippingCost = finalWeight * 1;
+		
+		return shippingCost;
 	}
 }
